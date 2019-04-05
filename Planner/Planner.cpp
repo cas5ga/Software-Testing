@@ -13,7 +13,7 @@ void readFile(){
 }
 
 void writeFile(){
-
+//gonna write a file
 
 
 }
