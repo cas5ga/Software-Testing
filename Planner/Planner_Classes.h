@@ -63,13 +63,17 @@ public:
 	Event inputEvent;
 	
 	cout<<"Please enter the name of the event: ";
-	getline(cin,inputName); 
+	cin.ignore();
+	getline(cin,inputName);
+	cout<<endl; 
 	
 	cout<<"Please enter the time of the event: ";
 	getline(cin,inputTime);
+	cout<<endl;
     
     cout<<"Please enter the description of the event: ";
 	getline(cin,inputDescription);
+	cout<<endl;
     
     inputEvent.setName(inputName);
     inputEvent.setTime(inputTime);
@@ -97,24 +101,24 @@ class Month{
 public:
 
 	void setMonthDays(int monthNumber, bool leapYear){
-		cout << "Set month is getting called correctly." << endl;
-		cout << monthNumber << endl;
-		if(leapYear){
-			cout << "it's a leap year." << endl;
-		}
+//		cout << "Set month is getting called correctly." << endl;
+//		cout << monthNumber << endl;
+//		if(leapYear){
+//			cout << "it's a leap year." << endl;
+//		}
 		switch(monthNumber){
 			case 1:
-				cout<<"case 1"<<endl;
+//				cout<<"case 1"<<endl;
 				setDays(31);
 				break;
 			case 2: 
-				cout<<"case 2"<<endl;									
+//				cout<<"case 2"<<endl;									
 				if(leapYear){
-					cout<<"leap year"<<endl;
+//					cout<<"leap year"<<endl;
 					setDays(29);
 				}
 				else{
-					cout<<"not a leap year"<<endl;
+//					cout<<"not a leap year"<<endl;
 					setDays(28);
 				}
 				break;
@@ -139,23 +143,24 @@ public:
 			case 12: setDays(31);
 				break;
 		}
-		cout << "is the fault after the loop ends?" << endl;
+//		cout << "is the fault after the loop ends?" << endl;
 	}
 	
 	void setDays(int dayNumber){
-		cout << "is the error before the loop?" << endl;
+//		cout << "is the error before the loop?" << endl;
 		
 		//dayList.insert(0, blankDay);
 		
 		for(int i = 0; i < dayNumber; i++){
 			Day blankDay;
 //			cout<<"Day Number: "<<blankDay.getDayNum()<<endl;
-			cout << "the error is in loop " << to_string(i+1) << endl;
+//			cout << "the error is in loop " << to_string(i+1) << endl;
 //			cout<<".getDayNum() "<<dayList[i-1].getDayNum()<<endl;
 			dayList.push_back(blankDay);								
-			cout<<"after .push_back"<<endl;
+//			cout<<"after .push_back"<<endl;
 			//dayList.insert(i, blankDay);
-			cout<<"length of dayList vector: "<<dayList.size()<<endl;
+//			cout<<"length of dayList vector: "<<dayList.size()<<endl;
+			
 		}
 		
 	}
@@ -212,13 +217,14 @@ public:
 		setLeapYear();
 		for(int i = 0; i <= 12; i++){
 			Month blankMonth;
-			cout<<"initializeMonthList runs " << i << " times" << endl;
+//			cout<<"initializeMonthList runs " << i << " times" << endl;
 			
 			//sampleMonth.setMonth(i, leapYear);
 			monthList.push_back(blankMonth);                             
-			cout << "After the monthlist push back" << endl;
+//			cout << "After the monthlist push back" << endl;
 			monthList[i].setMonthDays(i, leapYear);
-			cout<<"Days in Month: "<<monthList[i].getNumDays()<<endl;		}
+//			cout<<"Days in Month: "<<monthList[i].getNumDays()<<endl;	
+		}
 	}
 
 
