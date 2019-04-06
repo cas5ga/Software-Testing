@@ -72,6 +72,57 @@ void makeEvent(Calendar &calendar){
 	*/
 }
 
+void viewEvent(Calendar calendar){
+	int inputDay = 1;
+	int inputMonth = 1;
+	int inputYear = 1;
+	int daysInMonth = 1;
+	string eventName = "debug";
+	string eventTime = "debug";
+	string eventDescription = "debug";
+	
+	cout<<"Please indicate the day in which you want to search for events"<<endl;
+	cout<<"Please enter the year: ";
+	inputYear = inRange(1969,2031);
+	
+	cout<<"Please enter the month: ";
+	inputMonth = inRange(0,13);
+	
+	if(inputMonth == 2 && calendar.getYear(inputYear).getLeapYear()){
+		daysInMonth = 29;
+	}
+	else if(inputMonth == 2){
+		daysInMonth = 28;
+	}
+	else if(inputMonth == 4 || inputMonth == 6 || inputMonth == 9 || inputMonth == 11){
+		daysInMonth = 30;
+	}
+	else{
+		daysInMonth = 31;
+	}
+	
+	cout<<"Please enter the day: ";
+	inputDay = inRange(0, daysInMonth+1);
+	
+	if(calendar.getYear(inputYear).getMonth(inputMonth).getDay(inputDay).getNumEvents() == 0){
+		cout<<"You have no events scheduled for the given day!"<<endl;
+	}
+	else{
+		for(int i= 0; i < calendar.getYear(inputYear).getMonth(inputMonth).getDay(inputDay).getNumEvents(); i++){
+			eventName = calendar.getYear(inputYear).getMonth(inputMonth).getDay(inputDay).getEvents()[i].getName();
+			eventTime = calendar.getYear(inputYear).getMonth(inputMonth).getDay(inputDay).getEvents()[i].getTime();
+			eventDescription = calendar.getYear(inputYear).getMonth(inputMonth).getDay(inputDay).getEvents()[i].getDescription();
+			
+			cout<<"Event "<<i+1<<": "<<endl;
+			cout<<"Event Name: "<<eventName<<endl;
+			cout<<"Event Time: "<<eventTime<<endl;
+			cout<<"Event Description: "<<eventDescription<<endl;
+		}
+	}
+	
+	
+}
+
 void initializeCalendar(Calendar &calendar){
 	
 	int startYear = 0;
@@ -134,7 +185,7 @@ int main(){
 			makeEvent(calendar);
         }
         else if(option == 2){
-
+			viewEvent(calendar);
         }
         else if(option == 3){
 
