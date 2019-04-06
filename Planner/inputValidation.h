@@ -4,13 +4,13 @@
 int isInt(string a, string b){
     int z = 0;
 
-    cout << "Please enter a number between " + a + " and " + b << endl;
+    cout << "Please enter a number between " + a + " and " + b + " (exclusive): ";
     cin>>z;
 
     while(cin.fail()){
         cin.clear();
         cin.ignore();
-        cout << "Error. Please enter a number between " + a + " and " + b << endl;
+        cout << "Error. Please enter a number between " + a + " and " + b + " (not including " + a + " or " + b + " ): ";
         cin>>z;
     }
  return z;
