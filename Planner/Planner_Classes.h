@@ -218,8 +218,7 @@ public:
 			monthList.push_back(blankMonth);                             
 			cout << "After the monthlist push back" << endl;
 			monthList[i].setMonthDays(i, leapYear);
-			cout<<"Days in January: "<<monthList[0].getNumDays()<<endl;	 //This is printing the size as 0
-		}
+			cout<<"Days in Month: "<<monthList[i].getNumDays()<<endl;		}
 	}
 
 
