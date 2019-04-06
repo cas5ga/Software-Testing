@@ -49,11 +49,11 @@ class Day{
 	
 public:
 
-	Day(){}
+//	Day(){}
 
-	Day(int d){
-		dayNum = d;
-	}
+//	Day(int d){
+//		dayNum = d;
+//	}
 
 	void createEvent(){
 		
@@ -77,9 +77,9 @@ public:
 		
 	}
 	
-	int getDayNum(){
-		return dayNum;
-	}
+//	int getDayNum(){
+//		return dayNum;
+//	}
 
 
 private:	
@@ -103,13 +103,18 @@ public:
 			cout << "it's a leap year." << endl;
 		}
 		switch(monthNumber){
-			case 1: setDays(31);
+			case 1:
+				cout<<"case 1"<<endl;
+				setDays(31);
 				break;
 			case 2: 
+				cout<<"case 2"<<endl;									
 				if(leapYear){
+					cout<<"leap year"<<endl;
 					setDays(29);
 				}
 				else{
+					cout<<"not a leap year"<<endl;
 					setDays(28);
 				}
 				break;
@@ -142,13 +147,15 @@ public:
 		
 		//dayList.insert(0, blankDay);
 		
-		for(int i = 1; i <= dayNumber; i++){
-			Day blankDay(i);
-			cout<<"Day Number: "<<blankDay.getDayNum()<<endl;
-			cout << "the error is in the loop " << to_string(i) << endl;
-			dayList.push_back(blankDay); //Crashes here, figure out why.
+		for(int i = 0; i < dayNumber; i++){
+			Day blankDay;
+//			cout<<"Day Number: "<<blankDay.getDayNum()<<endl;
+			cout << "the error is in loop " << to_string(i+1) << endl;
+//			cout<<".getDayNum() "<<dayList[i-1].getDayNum()<<endl;
+			dayList.push_back(blankDay);								
 			cout<<"after .push_back"<<endl;
 			//dayList.insert(i, blankDay);
+			cout<<"length of dayList vector: "<<dayList.size()<<endl;
 		}
 		
 	}
@@ -166,7 +173,7 @@ public:
 
 private:	
 	vector<Day> dayList;
-	int monthNum;
+//	int monthNum;
 	
 	
 };
@@ -203,14 +210,15 @@ public:
 	
 	void initializeMonthList(){
 		setLeapYear();
-		for(int i = 1; i <= 12; i++){
-			Month sampleMonth;
-			cout<<"initializeMonthList runs " << i << "times" << endl;
+		for(int i = 0; i <= 12; i++){
+			Month blankMonth;
+			cout<<"initializeMonthList runs " << i << " times" << endl;
 			
 			//sampleMonth.setMonth(i, leapYear);
-			monthList.push_back(sampleMonth);                             //This function runs one time correctly but crashes on it's second run
+			monthList.push_back(blankMonth);                             
 			cout << "After the monthlist push back" << endl;
 			monthList[i].setMonthDays(i, leapYear);
+			cout<<"Days in January: "<<monthList[0].getNumDays()<<endl;	 //This is printing the size as 0
 		}
 	}
 
@@ -263,3 +271,4 @@ private:
 };
 
 #endif
+
