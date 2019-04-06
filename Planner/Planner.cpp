@@ -28,25 +28,29 @@ void makeEvent(Calendar &calendar){
 	Day classInputDay;
 	
 
-	cout<<"Please enter the year of the event: ";
-	inputYear = inRange(calendar.getStartYear(),calendar.getEndYear()); //This takes the start year and the end year of the calendar and uses those as endpoints to 
+	cout<<"Please enter the year of the event: "<<endl;
+	inputYear = inRange(calendar.getStartYear()-1,calendar.getEndYear()+1); //This takes the start year and the end year of the calendar and uses those as endpoints to 
 	//accept input from the user.
+	cout<<endl;
 
-	cout<<"Please enter the month of the event: ";
+	cout<<"Please enter the month of the event: "<<endl;
 	inputMonth = inRange(0, 13);
+	cout<<endl;
 	
-	cout<<"Please enter the day of the event: ";
+	cout<<"Please enter the day of the event: "<<endl;
 	
 	
 	numDays = calendar.getYear(inputYear).getMonth(inputMonth).getNumDays();
-	cout<<"successfully computed numDays"<<endl;
+//	cout<<"successfully computed numDays"<<endl;
 	inputDay = inRange(0, numDays);
+	cout<<endl;
 	classInputDay = calendar.getYear(inputYear).getMonth(inputMonth).getDay(inputDay);
 	
 	//this is the "event" we're working with.
 	//pass in parameters to createEvent to create the event.
 	//calendar.getYear(inputYear).getMonth(inputMonth).getDay(inputDay).createEvent();
 	classInputDay.createEvent();
+	
 	
 	
 /*
@@ -72,17 +76,19 @@ void initializeCalendar(Calendar &calendar){
 	
 	int startYear = 0;
 	int endYear = 0;
-	
-	cout<<"Please enter the first year of the Calendar: " << endl;
+
+	cout<<"Please enter the first year of the Calendar" << endl;
 	startYear = inRange(1969, 2030);
 	cout<<endl;
-	cout<<"Please enter the last year of the Calendar: " << endl;
+	
+	cout<<"Please enter the last year of the Calendar" << endl;
 	endYear = inRange(startYear, 2031);
 	cout<<endl;
 	
 	while(endYear <= startYear){
-		cout<<"Please enter a later end year: "<<endl;
-		endYear = inRange(1969, 2031);
+		cout<<"Please enter a later end year"<<endl;
+		endYear = inRange(startYear, 2031);
+		cout<<endl;
 	}
 	
 	calendar.setYears(startYear, endYear);
@@ -90,22 +96,11 @@ void initializeCalendar(Calendar &calendar){
 	
 }
 
-void initializeMonth(){
-		
-	
-		
-}
-
-void initializeDay(){
-	
-	
-	
-}
-
 void menu(){
 
+	cout<<"Menu:"<<endl;
     cout<<"1) Add Event"<<endl;
-    cout<<"2) View Event"<<endl;
+    cout<<"2) View Events"<<endl;
     cout<<"3) Delete Event"<<endl;
     cout<<"4) Quit"<<endl<<endl;
 
@@ -125,14 +120,15 @@ int main(){
     while(option != 4){
 
         menu();
-        cout<<"Please enter the number associated with one of these options: ";
+        cout<<"Please enter an option"<<endl;
         option = inRange(0,5);
+        cout<<endl;
 
-        while(option < 1 || option > 4){
-            cout<<"Sorry, that number is not valid."<<endl;
-            cout<<"Please enter a valid response: "<<endl;
-            option= inRange(0,5);
-        }
+//        while(option < 1 || option > 4){
+//            cout<<"Sorry, that number is not valid."<<endl;
+//            cout<<"Please enter a valid response: "<<endl;
+//            option= inRange(0,5);
+//        }
 
         if(option == 1){
 			makeEvent(calendar);
