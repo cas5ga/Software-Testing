@@ -78,7 +78,17 @@ public:
     inputEvent.setName(inputName);
     inputEvent.setTime(inputTime);
     inputEvent.setDescription(inputDescription);
+    
+    eventList.push_back(inputEvent);
 		
+	}
+	
+	int getNumEvents(){
+		return eventList.size();
+	}
+	
+	vector<Event> getEvents(){
+		return eventList;
 	}
 	
 //	int getDayNum(){
@@ -88,7 +98,7 @@ public:
 
 private:	
 	vector<Event> eventList;
-	int dayNum;
+//	int dayNum;
 	
 	
 };
@@ -211,6 +221,10 @@ public:
 		else{
 			leapYear = false;
 		}
+	}
+	
+	bool getLeapYear(){
+		return leapYear;
 	}
 	
 	void initializeMonthList(){
