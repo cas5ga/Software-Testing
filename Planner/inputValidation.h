@@ -21,7 +21,7 @@ int inRange(int a, int b){
     int input;
     do{
         input = isInt(to_string(a), to_string(b));
-        if(input > a && input < b){
+        if(input >= a && input <= b){
             goodInput = true;
         }
     }while(!goodInput);
