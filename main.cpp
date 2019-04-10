@@ -6,6 +6,11 @@
 
 using namespace std;
 
+
+//Matthew M. Boshears, Caleb A. Street, Nathan Lewis, Technically Payton
+//4/10/2019
+//Software Testing
+
 void readFile(){
 //gonna read the file
 
