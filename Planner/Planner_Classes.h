@@ -55,43 +55,51 @@ public:
 //		dayNum = d;
 //	}
 
-	void createEvent(){
+    string setEventName(){
+        string inputName = "debug";
+        cout<<"Please enter the name of the event: ";
+        cin.ignore();
+        getline(cin,inputName);
+        cout<<endl;
+        return inputName;
+    }
 
-	string inputName = "debug";
-	string inputTime = "debug";
-	string inputDescription = "debug";
+    string setEventTime(){
+        string inputTime = "debug";
+        cout<<"Please enter the time of the event: ";
+        getline(cin,inputTime);
+        cout<<endl;
+        return inputTime;
+    }
 
+    string setEventDescription(){
+        string inputDescription = "debug";
+        cout<<"Please enter the description of the event: ";
+        getline(cin,inputDescription);
+        cout<<endl;
+        return inputDescription;
+    }
 
-
-	cout<<"Please enter the name of the event: ";
-	cin.ignore();
-	getline(cin,inputName);
-	cout<<endl;
-
-	cout<<"Please enter the time of the event: ";
-	getline(cin,inputTime);
-	cout<<endl;
-
-    cout<<"Please enter the description of the event: ";
-	getline(cin,inputDescription);
-	cout<<endl;
+	void createEvent(string inputName, string inputTime, string inputDescription){
 
     inputEvent.setName(inputName);
     inputEvent.setTime(inputTime);
     inputEvent.setDescription(inputDescription);
-
-    //eventList.insert(eventNum, inputEvent, 1);
     eventList.push_back(inputEvent);
-    cout<<"Added"<<endl;
-    cout<<"Events in list: "<<getNumEvents()<<endl;
+//    cout<<"Added"<<endl;
+//    cout<<"Events in list: "<<getNumEvents()<<endl;
 	}
 
 	int getNumEvents(){
 		return eventList.size();
 	}
 
-	vector<Event> getEvents(){
+	vector<Event>& getEvents(){
 		return eventList;
+	}
+
+	Event getSpecificEvent(int s){
+        return eventList[s];
 	}
 
 //	int getDayNum(){

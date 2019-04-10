@@ -1,16 +1,26 @@
 #ifndef inputValidation_H_
 #define inputValidation_H_
 
+void getInput(string a, string b, int& z){
+    if(a == b){
+        cout<<"Please enter the number " + a + ": ";
+    }
+    else{
+        cout << "Please enter a number between " + a + " and " + b + ": ";
+    }
+
+    cin>>z;
+}
+
 int isInt(string a, string b){
     int z = 0;
 
-    cout << "Please enter a number between " + a + " and " + b + " (exclusive): ";
-    cin>>z;
+    getInput(a,b,z);
 
     while(cin.fail()){
         cin.clear();
         cin.ignore();
-        cout << "Error. Please enter a number between " + a + " and " + b + " (not including " + a + " or " + b + " ): ";
+        cout << endl << "Error. Please enter a number between " + a + " and " + b + ": ";
         cin>>z;
     }
  return z;
@@ -26,8 +36,12 @@ int inRange(int a, int b){
         }
     }while(!goodInput);
 
-
     return input;
 }
+
+//I don't really know how to test these without massively rewriting them.
+//I'm fine with one round of "manual" testing that isn't automated, and these functions
+//Have most definitely stood the test of time.
+
 
 #endif
