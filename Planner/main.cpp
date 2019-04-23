@@ -6,9 +6,30 @@
 
 using namespace std;
 
-void readFile(){
+
+void readFile(Calendar &calendar){
 //gonna read the file
 
+    ifstream inFile;
+    inFile.open("Events.txt");
+
+    int tempYear;
+    int tempMonth;
+    int tempDay;
+    string tempName;
+    string tempTime;
+    string tempDescription;
+
+    while(inFile >> tempYear){
+        inFile >> tempMonth;
+        inFile >> tempDay;
+        cin.clear();
+        getline(inFile, tempName);
+        getline(inFile, tempTime);
+        getline(inFile, tempDescription);
+        calendar.getYear(tempYear).getMonth(tempMonth).getDay(tempDay).createEvent(tempName, tempTime, tempDescription);
+        cout<<"done"<<endl;
+    }
 
 }
 
@@ -49,7 +70,6 @@ int eventInput(Calendar &calendar, int (&returnArray)[3]){
 	return 0;
 }
 
-
 void makeEvent(Calendar &calendar, int inputYear, int inputMonth, int inputDay){
 
     string inputName = calendar.getYear(inputYear).getMonth(inputMonth).getDay(inputDay).setEventName();
@@ -57,7 +77,6 @@ void makeEvent(Calendar &calendar, int inputYear, int inputMonth, int inputDay){
     string inputDescription = calendar.getYear(inputYear).getMonth(inputMonth).getDay(inputDay).setEventDescription();
 
 	calendar.getYear(inputYear).getMonth(inputMonth).getDay(inputDay).createEvent(inputName, inputTime, inputDescription);
-
 }
 
 string viewEvent(Calendar &calendar, int inputYear, int inputMonth, int inputDay){
@@ -167,6 +186,8 @@ int main(int argc, char* argv[]){
 
     initializeCalendarInput(inputValues);
     initializeCalendar(calendar, inputValues[0], inputValues[1]);
+
+    readFile(calendar);
 
     while(option != 4){
 
