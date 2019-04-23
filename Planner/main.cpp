@@ -139,31 +139,6 @@ void deleteEvent(Calendar &calendar, int inputYear, int inputMonth, int inputDay
 
 }
 
-//void initializeCalendarInput(int (&inputValues)[2]){
-//
-//    int startYear;
-//    int endYear;
-//    cout<<"Please enter the first year of the Calendar" << endl;
-//	startYear = inRange(1970, 2030);
-//	cout<<endl;
-//
-//    cout<<"Please enter the last year of the Calendar" << endl;
-//	endYear = inRange(startYear, 2030);
-//	cout<<endl;
-//
-//	while(endYear < startYear){
-//		cout<<"Please enter a later end year"<<endl;
-//		endYear = inRange(startYear, 2030);
-//		cout<<endl;
-//	}
-//
-//    inputValues[0] = startYear;
-//    inputValues[1] = endYear;
-//
-//    return;
-//
-//}
-
 int initializeCalendar(Calendar &calendar, int startYear, int endYear){
     if(startYear < 1970 || endYear > 2030){
         return 0;
@@ -196,11 +171,9 @@ int main(int argc, char* argv[]){
     Event event;
     Calendar calendar;
     int inputArray[3];
-//    int inputValues[2];
     string outputString = "debug";
     int tempID = -1;
 
-//    initializeCalendarInput(inputValues);
     initializeCalendar(calendar, 1970, 2030);
 
     readFile(calendar);
