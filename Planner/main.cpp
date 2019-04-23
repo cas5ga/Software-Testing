@@ -13,29 +13,45 @@ void readFile(Calendar &calendar){
     ifstream inFile;
     inFile.open("Events.txt");
 
-    int tempYear;
-    int tempMonth;
-    int tempDay;
+    string tempYear;
+    string tempMonth;
+    string tempDay;
     string tempName;
     string tempTime;
     string tempDescription;
 
-    while(inFile >> tempYear){
-        inFile >> tempMonth;
-        inFile >> tempDay;
-        cin.clear();
+    while(getline(inFile, tempYear)){
+        getline(inFile, tempMonth);
+        getline(inFile, tempDay);
         getline(inFile, tempName);
         getline(inFile, tempTime);
         getline(inFile, tempDescription);
-        calendar.getYear(tempYear).getMonth(tempMonth).getDay(tempDay).createEvent(tempName, tempTime, tempDescription);
-        cout<<"done"<<endl;
+        calendar.getYear(stoi(tempYear)).getMonth(stoi(tempMonth)).getDay(stoi(tempDay)).createEvent(tempName, tempTime, tempDescription);
     }
 
+    inFile.close();
 }
 
-void writeFile(){
+void writeFile(Calendar &calendar){
 //gonna write a file
 
+    ofstream outFile;
+    outFile.open("Events.txt");
+    for(int y = 1970; y <= 2030; y++){
+        for(int m = 1; m <= 12; m++){
+            for(int d = 1; d <= calendar.getYear(y).getMonth(m).getNumDays(); d++){
+                for( int e = 0; e < calendar.getYear(y).getMonth(m).getDay(d).getNumEvents(); e++){
+                    outFile << y << endl;
+                    outFile << m << endl;
+                    outFile << d << endl;
+                    outFile << calendar.getYear(y).getMonth(m).getDay(d).getEvents()[e].getName() << endl;
+                    outFile << calendar.getYear(y).getMonth(m).getDay(d).getEvents()[e].getTime() << endl;
+                    outFile << calendar.getYear(y).getMonth(m).getDay(d).getEvents()[e].getDescription() << endl;
+                }
+            }
+        }
+    }
+    outFile.close();
 
 }
 
@@ -123,30 +139,30 @@ void deleteEvent(Calendar &calendar, int inputYear, int inputMonth, int inputDay
 
 }
 
-void initializeCalendarInput(int (&inputValues)[2]){
-
-    int startYear;
-    int endYear;
-    cout<<"Please enter the first year of the Calendar" << endl;
-	startYear = inRange(1970, 2030);
-	cout<<endl;
-
-    cout<<"Please enter the last year of the Calendar" << endl;
-	endYear = inRange(startYear, 2030);
-	cout<<endl;
-
-	while(endYear < startYear){
-		cout<<"Please enter a later end year"<<endl;
-		endYear = inRange(startYear, 2030);
-		cout<<endl;
-	}
-
-    inputValues[0] = startYear;
-    inputValues[1] = endYear;
-
-    return;
-
-}
+//void initializeCalendarInput(int (&inputValues)[2]){
+//
+//    int startYear;
+//    int endYear;
+//    cout<<"Please enter the first year of the Calendar" << endl;
+//	startYear = inRange(1970, 2030);
+//	cout<<endl;
+//
+//    cout<<"Please enter the last year of the Calendar" << endl;
+//	endYear = inRange(startYear, 2030);
+//	cout<<endl;
+//
+//	while(endYear < startYear){
+//		cout<<"Please enter a later end year"<<endl;
+//		endYear = inRange(startYear, 2030);
+//		cout<<endl;
+//	}
+//
+//    inputValues[0] = startYear;
+//    inputValues[1] = endYear;
+//
+//    return;
+//
+//}
 
 int initializeCalendar(Calendar &calendar, int startYear, int endYear){
     if(startYear < 1970 || endYear > 2030){
@@ -180,12 +196,12 @@ int main(int argc, char* argv[]){
     Event event;
     Calendar calendar;
     int inputArray[3];
-    int inputValues[2];
+//    int inputValues[2];
     string outputString = "debug";
     int tempID = -1;
 
-    initializeCalendarInput(inputValues);
-    initializeCalendar(calendar, inputValues[0], inputValues[1]);
+//    initializeCalendarInput(inputValues);
+    initializeCalendar(calendar, 1970, 2030);
 
     readFile(calendar);
 
@@ -221,5 +237,7 @@ int main(int argc, char* argv[]){
 
 		cout<<endl;
     }
+
+    writeFile(calendar);
 
 }
